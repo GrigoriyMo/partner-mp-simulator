@@ -18,5 +18,6 @@
 partner_id
 token
 (Используется файл .env в корне приложения)
+
 Снимок экрана:
 https://ibb.co/r4kPYVz
