@@ -3,7 +3,7 @@ var router = express.Router();
 const axios = require('axios'); // Используем Axios для отправки запросов
 
 router.patch('/', async function (req, res, next) {
-  var url = 'https://st-api.gazprombonus.ru/v1/partners/0/clients/' + req.body.partner_user_id;
+  var url = `https://st-api.gazprombonus.ru/v1/partners/${process.env.partner_id}/clients/` + req.body.partner_user_id;
   var payload = {
     'meta': {
       'offer_status': 'ACTIVE',
@@ -11,15 +11,16 @@ router.patch('/', async function (req, res, next) {
     }
   }
 
-  console.log('POST: ' + url);
+  console.log('PATCH: ' + url);
   console.log('payload: ');
   console.log(payload);
 
   try {
     // Отправляем POST-запрос на указанный адрес
-    const response = await axios.post(url, payload, {
+    const response = await axios.patch(url, payload, {
       headers: {
         'Content-Type': 'application/json',
+        'Authorization':`Bearer ${process.env.token}`
       },
     });
 
@@ -32,8 +33,8 @@ router.patch('/', async function (req, res, next) {
     // Если произошла ошибка, возвращаем код ошибки клиенту
     if (error.response) {
       // Ошибка от сервера
-      //res.status(error.response.status).send(error.response.data);
-      res.sendStatus(200);
+      res.status(error.response.status).send(error.response.data);
+      //res.sendStatus(200);
     } else {
       // Ошибка запроса
       res.sendStatus(500);

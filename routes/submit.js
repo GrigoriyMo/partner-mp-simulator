@@ -3,9 +3,10 @@ const router = express.Router();
 const axios = require('axios'); // Используем Axios для отправки запросов
 
 router.post('/', async function (req, res, next) {
+  console.log( `https://st-api.gazprombonus.ru/v1/partners/${process.env.partner_id}/reference/client`)
   if (req.body.email && req.body.password && req.body.agreement) {
     console.log(req.body);
-    var url = 'https://st-api.gazprombonus.ru/partners/0/reference/client';
+    var url = `https://st-api.gazprombonus.ru/v1/partners/${process.env.partner_id}/reference/client`;
     var payload = {
       "reference": req.body.reference,
       "params": {
@@ -22,6 +23,7 @@ router.post('/', async function (req, res, next) {
       const response = await axios.post(url, payload, {
         headers: {
           'Content-Type': 'application/json',
+                  'Authorization':`Bearer ${process.env.token}`
         },
       });
 
@@ -34,8 +36,8 @@ router.post('/', async function (req, res, next) {
       // Если произошла ошибка, возвращаем код ошибки клиенту
       if (error.response) {
         // Ошибка от сервера
-        //res.status(error.response.status).send(error.response.data);
-        res.sendStatus(200);
+        res.status(error.response.status).send(error.response.data);
+        //res.sendStatus(200);
       } else {
         // Ошибка запроса
         res.sendStatus(500);
