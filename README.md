@@ -18,4 +18,5 @@
 partner_id
 token
 
-![enter image description here](https://ibb.co/r4kPYVz)
+Снимок экрана:
+https://ibb.co/r4kPYVz
