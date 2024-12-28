@@ -1,4 +1,5 @@
 
+
 # Установка
 
     git clone https://github.com/GrigoriyMo/partner-mp-simulator.git myfolder
@@ -16,3 +17,5 @@
 **Переменные окружения backend:**
 partner_id
 token
+
+![enter image description here](https://ibb.co/r4kPYVz)
