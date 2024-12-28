@@ -3,10 +3,10 @@ var router = express.Router();
 const axios = require('axios'); // Используем Axios для отправки запросов
 
 router.patch('/', async function (req, res, next) {
-  var url = `https://st-api.gazprombonus.ru/v1/partners/${process.env.partner_id}/clients/` + req.body.partner_user_id;
+  var url = `https://st-api.gazprombonus.ru/v2/partners/${process.env.partner_id}/clients/` + req.body.partner_user_id;
   var payload = {
-    'meta': {
-      'offer_status': 'ACTIVE',
+    'mesta': {
+      'offer_status': 'INACTIVE',
       'date': new Date()
     }
   }

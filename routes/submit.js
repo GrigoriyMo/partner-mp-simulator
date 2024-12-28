@@ -3,10 +3,10 @@ const router = express.Router();
 const axios = require('axios'); // Используем Axios для отправки запросов
 
 router.post('/', async function (req, res, next) {
-  console.log( `https://st-api.gazprombonus.ru/v1/partners/${process.env.partner_id}/reference/client`)
+
   if (req.body.email && req.body.password && req.body.agreement) {
     console.log(req.body);
-    var url = `https://st-api.gazprombonus.ru/v1/partners/${process.env.partner_id}/reference/client`;
+    var url = `https://st-api.gazprombonus.ru/v2/partners/${process.env.partner_id}/reference/client`;
     var payload = {
       "reference": req.body.reference,
       "params": {
